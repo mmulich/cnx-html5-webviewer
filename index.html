@@ -38,6 +38,10 @@
   </header>
   <div role="main">
 
+    <div id="content-container">
+      <!-- main content area -->
+    </div>
+
   </div>
   <footer>
 
@@ -53,7 +57,14 @@
   <!-- scripts concatenated and minified via build script -->
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/jquery.xdomainajax.js"></script>
   <!-- end scripts -->
 
+  <script>
+    var URL = "http://cnx.org/content/m42955/latest/body";
+    $(document).ready(function() {
+      $("#content-container").load(URL);
+    });
+  </script>
 </body>
 </html>
