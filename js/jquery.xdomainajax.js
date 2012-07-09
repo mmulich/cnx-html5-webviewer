@@ -60,6 +60,8 @@ jQuery.ajax = (function(_ajax){
                                 // YQL screws with <script>s
                                 // Get rid of them
                                 .replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi, ''),
+                            isResolved: function() {return true},
+                            done: function() {return},
                         }, 'success');
                     }
 
