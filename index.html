@@ -62,10 +62,21 @@
   <!-- end scripts -->
 
   <script>
-    var URL = "http://cnx.org/content/m42955/latest";
+    var url = "http://cnx.org/content";
+        moduleUndefined = false,
+        modulePath = window.location.hash.slice(2);
+
+    if (modulePath === undefined) {
+      moduleUndefined = true;
+    } else {
+      url = url + modulePath
+    }
     $(document).ready(function() {
-      $("#content-container").load(URL + "/body");
-      $("#content-title").load(URL + "/Title")
+      if (moduleUndefined) {
+        return;
+      }
+      $("#content-container").load(url + "/body");
+      $("#content-title").load(url + "/Title")
     });
   </script>
 </body>
