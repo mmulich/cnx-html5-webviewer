@@ -19,25 +19,8 @@ getModulePartsFromPath = function(path) {
     }
     return result;
 }
-
-// On document load fill the page with the module content.
-$(document).ready(function() {
-    var modulePath = window.location.hash.slice("#!".length),
-        moduleId = undefined,
-        moduleVersion = undefined,
-        url = "";
-    console.log("module path: " + modulePath);
-    module = getModulePartsFromPath(modulePath);
-    if (module.id === undefined) {
-        moduleUndefined = true;
-    } else {
-        url = baseURL + "/content/" + module.id + "/" + module.version;
-    }
-    console.log(url);
-
-    // Break out of the function early if there is no module path.
-    if (moduleUndefined) { return }
-
+renderModule = function(id, version) {
+    var url = baseURL + "/content/" + id + "/" + version;
     $.get(url + "/body", function(data) {
         var body = $(data.responseText);
         // Correct the image resource URLs.
@@ -51,4 +34,16 @@ $(document).ready(function() {
         $("#content-container").html(body);
     });
     $("#content-title").load(url + "/Title")
+}
+
+
+/* DOCUMENT READY? */
+$(document).ready(function() {
+    var modulePath = window.location.hash.slice("#!".length);
+    console.log("path: " + modulePath);
+    var module = getModulePartsFromPath(modulePath);
+    if (module.id !== undefined) {
+        // TODO Display a loading spinner instead of the links.
+        renderModule(module.id, module.version);
+    }
 });
