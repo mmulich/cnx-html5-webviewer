@@ -35,7 +35,12 @@ renderModule = function(id, version) {
     });
     $("#content-title").load(url + "/Title")
 }
-
+moduleLinkClicked = function () {
+    var modulePath = $(this).attr('href').slice(2);
+    console.log("path: " + modulePath);
+    var module = getModulePartsFromPath(modulePath);
+    renderModule(module.id, module.version);
+}
 
 /* DOCUMENT READY? */
 $(document).ready(function() {
@@ -45,5 +50,7 @@ $(document).ready(function() {
     if (module.id !== undefined) {
         // TODO Display a loading spinner instead of the links.
         renderModule(module.id, module.version);
+    } else {
+        $("#content-container a").click(moduleLinkClicked);
     }
 });
