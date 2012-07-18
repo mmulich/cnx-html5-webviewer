@@ -40,6 +40,11 @@
 
     <h1 id="content-title"></h1>
     <div id="content-container">
+      <a href="/#!/content/m42092">Physics: An Introduction (latest)</a>
+      <br>
+      <a href="/#!/content/m42092@1.4">Physics: An Introduction (1.4)</a>
+      <br>
+      <a href="/#!/content/m42092@1.1">Physics: An Introduction (1.1)</a>
       <!-- main content area -->
     </div>
 
@@ -59,25 +64,8 @@
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
   <script src="js/jquery.xdomainajax.js"></script>
+  <script src="js/cnx-module.js"></script>
   <!-- end scripts -->
 
-  <script>
-    var url = "http://cnx.org/content";
-        moduleUndefined = false,
-        modulePath = window.location.hash.slice(2);
-
-    if (modulePath === undefined) {
-      moduleUndefined = true;
-    } else {
-      url = url + modulePath
-    }
-    $(document).ready(function() {
-      if (moduleUndefined) {
-        return;
-      }
-      $("#content-container").load(url + "/body");
-      $("#content-title").load(url + "/Title")
-    });
-  </script>
 </body>
 </html>
